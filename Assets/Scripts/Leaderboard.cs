@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using LootLocker.Requests;
 using TMPro;
+using UnityEngine.UIElements;
+using System;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -11,6 +13,14 @@ public class Leaderboard : MonoBehaviour
     public TextMeshProUGUI playerScores;
 
     public bool canUploadScore;
+
+    public Transform MaxHeightPos;
+
+    public GameObject JumpRest;
+
+    public int maxScores = 10;
+    public int minScores = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +31,7 @@ public class Leaderboard : MonoBehaviour
     {
         bool done = false;
         string playerID = PlayerPrefs.GetString("PlayerID") + GetAndIncrementScoreCharacters();
-        string metadata = PlayerPrefs.GetString("PlayerName");
+        string metadata = PlayerPrefs.GetString("PlayerName") + "-x" + (Mathf.Round(MaxHeightPos.position.x)).ToString() + "y" + (Mathf.Round(MaxHeightPos.position.y)).ToString();
 
         LootLockerSDKManager.SubmitScore(playerID, scoreToUpload, leaderboardID.ToString(), metadata, (response) =>
         {
@@ -84,7 +94,7 @@ public class Leaderboard : MonoBehaviour
     public IEnumerator FetchTopHighscoresRoutine()
     {
         bool done = false;
-        LootLockerSDKManager.GetScoreList(leaderboardID, 10, 0, (response) =>
+        LootLockerSDKManager.GetScoreList(leaderboardID, maxScores, minScores, (response) =>
         {
             if (response.success)
             {
@@ -95,7 +105,22 @@ public class Leaderboard : MonoBehaviour
 
                 for (int i = 0; i < members.Length; i++)
                 {
-                    tempPlayerNames += members[i].rank + ". " + members[i].metadata + "\n";
+                    string CleanName = members[i].metadata.Substring(0, members[i].metadata.IndexOf("-"));
+                    string tempString = members[i].metadata;
+                    int from = tempString.IndexOf("x") + 1;
+                    int to = tempString.IndexOf("y");
+                    string Xresult = tempString.Substring(from, to - from);
+                    to++;
+                    string Yresult = tempString.Substring(to, tempString.Length - to );
+
+                    //Debug.Log(CleanName);
+                    //Debug.Log(tempString);
+                    //Debug.Log(Xresult);
+                    //Debug.Log(Yresult);
+                    float xPos = float.Parse(Xresult);
+                    float yPos = float.Parse(Yresult);
+
+                    tempPlayerNames += members[i].rank + ". " + CleanName + "\n";
                     //if (members[i].player.name != "")
                     //{
                     //    tempPlayerNames += members[i].player.name;
@@ -106,6 +131,9 @@ public class Leaderboard : MonoBehaviour
                     //}
                     tempPlayerScores += members[i].score + "\n";
                     //tempPlayerNames += "\n";
+
+                    GameObject temp = Instantiate(JumpRest, new Vector3(xPos, yPos, 0f), Quaternion.Euler(0,0,0));
+                    temp.GetComponent<JumpRest>().fallenName = CleanName;
                 }
                 done = true;
                 playerNames.text = tempPlayerNames;

@@ -6,7 +6,19 @@ using UnityEngine;
 public class JumpRest : MonoBehaviour
 {
     public Movement playerMovement;
-    public TextMeshProUGUI jumpcount;
+    public string fallenName;
+    public TextMeshProUGUI nameText;
+
+    private void Awake()
+    {
+        playerMovement = GameObject.Find("/Player").GetComponent<Movement>();
+        
+    }
+
+    private void Start()
+    {
+        nameText.text = fallenName;  
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +33,8 @@ public class JumpRest : MonoBehaviour
             //    playerMovement.jumps = 3;
             //}
 
-            jumpcount.text = playerMovement.jumps.ToString();
+            playerMovement.jumpCount.text = playerMovement.jumps.ToString();
+            //jumpcount.text = playerMovement.jumps.ToString();
             Destroy(gameObject);
         }
     }

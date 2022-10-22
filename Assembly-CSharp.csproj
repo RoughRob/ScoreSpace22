@@ -58,12 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Leaderboard.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\JumpRest.cs" />
+    <Compile Include="Assets\Scripts\FallToDeath.cs" />
+    <Compile Include="Assets\Scripts\HeightScore.cs" />
     <Compile Include="Assets\Scripts\ScoreTest.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\HeightScore.cs" />
-    <Compile Include="Assets\Scripts\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\FallToDeath.cs" />
-    <Compile Include="Assets\Scripts\JumpRest.cs" />
+    <Compile Include="Assets\ScorePlacer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
