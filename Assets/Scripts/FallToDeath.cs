@@ -17,10 +17,11 @@ public class FallToDeath : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && heightScore.heightScore > deatheight )
+        if (other.tag == "Player" && heightScore.heightScore > deatheight )
         {
             //other.gameObject.SetActive(false);
             StartCoroutine(FellToDeath());
+
         }
     }
 
@@ -30,7 +31,6 @@ public class FallToDeath : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
         yield return leaderboard.SubmitScoreRoutine(Convert.ToInt32(heightScore.moddedScore));
         Time.timeScale = 1f; 
-        Debug.Log("y no 2");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }

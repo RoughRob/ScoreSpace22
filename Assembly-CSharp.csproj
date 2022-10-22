@@ -62,12 +62,17 @@
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\JumpRest.cs" />
     <Compile Include="Assets\Scripts\FallToDeath.cs" />
-    <Compile Include="Assets\Scripts\HeightScore.cs" />
-    <Compile Include="Assets\Scripts\ScoreTest.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\LookTarget.cs" />
     <Compile Include="Assets\Scripts\Enemie.cs" />
+    <Compile Include="Assets\Scripts\HeightScore.cs" />
+    <Compile Include="Assets\Scripts\ScoreTest.cs" />
     <Compile Include="Assets\Scripts\Spear.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\Boost.cs" />
+    <Compile Include="Assets\Scripts\PlatformFade.cs" />
+    <Compile Include="Assets\Scripts\MeteorSpawn.cs" />
+    <Compile Include="Assets\Scripts\Follow.cs" />
+    <Compile Include="Assets\Scripts\Meteor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

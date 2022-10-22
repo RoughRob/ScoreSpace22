@@ -5,36 +5,50 @@ using UnityEngine.UIElements;
 
 public class Spear : MonoBehaviour
 {
-
-    public Transform stuckTrans;
     public Rigidbody rb;
-    Transform struckTrans;
 
     public int waitDeath;
 
+    bool hasCollided = false;
+
+    public Collider collided;
 
     private void Start()
     {
         StartCoroutine(Death());
+        hasCollided = false;
     }
-    // Update is called once per frame
-    void Update()
-    {
 
+    private void Update()
+    {
+        hasCollided = false;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (hasCollided)
         {
-            rb.isKinematic = true;
-            transform.SetParent(other.transform, true);
-
-            transform.position = other.ClosestPoint(transform.position);
-
+            return;
         }
-    }
+        else
+        {
 
+            if (other.tag == "Player")
+            {
+                hasCollided = true;
+                other.gameObject.GetComponent<Movement>().reduceJumps(1);
+                rb.isKinematic = true;
+                transform.SetParent(other.transform, true);
+
+                transform.position = other.ClosestPoint(transform.position);
+                collided.enabled = false;
+
+            }
+        }
+
+        
+    }
 
     IEnumerator Death()
     {

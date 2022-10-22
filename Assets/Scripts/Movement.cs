@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
 
     public float speed = 5f;
     public float jumpHeight = 3f;
+    public float BoostJumpHeight = 10f;
+    bool boosting = false;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
@@ -22,7 +24,7 @@ public class Movement : MonoBehaviour
 
     public float gravity = -9.81f;
     Vector3 velocity;
-    bool isGrouned;
+    public bool isGrouned;
 
     public int jumps = 3;
     public TextMeshProUGUI jumpCount;
@@ -36,12 +38,18 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         isGrouned = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrouned && velocity.y < 0)
         {
             velocity.y = -2f;
+
+            if(jumps < 3)
             jumps = 3;
+
+            jumpCount.text = jumps.ToString();
         }
 
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -58,24 +66,54 @@ public class Movement : MonoBehaviour
             controller.Move(direction * speed * Time.deltaTime); 
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (!boosting)
         {
-            if (isGrouned || jumps > 0)
+
+            if (Input.GetButtonDown("Jump"))
             {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                jumps--;
-                jumpCount.text = jumps.ToString();
+                if (isGrouned || jumps > 0)
+                {
+                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                    jumps--;
+                    jumpCount.text = jumps.ToString();
+                }
+
             }
-            else if (jumps <= 0)
-            {
-                //
-            }
-            
         }
 
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
 
+    }
+
+    public void reduceJumps(int jumpsToReduseBy)
+    {
+        jumps = jumps - jumpsToReduseBy;
+        if(jumps < 0)
+        {
+            jumpCount.text = "0";
+        }
+        else
+        {
+            jumpCount.text = jumps.ToString();
+        }
+
+    }
+
+    public void BoostJump()
+    {
+        boosting = true;
+        velocity.y = Mathf.Sqrt(BoostJumpHeight * -2f * gravity);
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        StartCoroutine(BoostWait());
+    }
+
+    IEnumerator BoostWait()
+    {
+        yield return new WaitForSeconds(2);
+        boosting = false;
     }
 }

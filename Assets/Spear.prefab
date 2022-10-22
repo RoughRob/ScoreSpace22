@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04414cf92b04a4b4896bf4f79db765c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stuckTrans: {fileID: 0}
   rb: {fileID: -4615279179684769749}
+  waitDeath: 10
+  collided: {fileID: 5158303659385299812}
 --- !u!54 &-4615279179684769749
 Rigidbody:
   m_ObjectHideFlags: 0
