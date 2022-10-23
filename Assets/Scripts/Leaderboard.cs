@@ -8,7 +8,7 @@ using System;
 
 public class Leaderboard : MonoBehaviour
 {
-    int leaderboardID = 8060;
+    int leaderboardID = 8061;
     public TextMeshProUGUI playerNames;
     public TextMeshProUGUI playerScores;
 
@@ -36,7 +36,7 @@ public class Leaderboard : MonoBehaviour
     {
         bool done = false;
         string playerID = PlayerPrefs.GetString("PlayerID") + GetAndIncrementScoreCharacters();
-        string metadata = PlayerPrefs.GetString("PlayerName") + "-x" + (Mathf.Round(MaxHeightPos.position.x)).ToString() + "y" + (Mathf.Round(MaxHeightPos.position.y)).ToString();
+        string metadata = PlayerPrefs.GetString("PlayerName") + "-!" + (Mathf.Round(MaxHeightPos.position.x)).ToString() + "@" + (Mathf.Round(MaxHeightPos.position.y)).ToString();
 
         LootLockerSDKManager.SubmitScore(playerID, scoreToUpload, leaderboardID.ToString(), metadata, (response) =>
         {
@@ -112,8 +112,8 @@ public class Leaderboard : MonoBehaviour
                 {
                     string CleanName = members[i].metadata.Substring(0, members[i].metadata.IndexOf("-"));
                     string tempString = members[i].metadata;
-                    int from = tempString.IndexOf("x") + 1;
-                    int to = tempString.IndexOf("y");
+                    int from = tempString.IndexOf("!") + 1;
+                    int to = tempString.IndexOf("@");
                     string Xresult = tempString.Substring(from, to - from);
                     to++;
                     string Yresult = tempString.Substring(to, tempString.Length - to );
