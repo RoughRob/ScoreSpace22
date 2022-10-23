@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     public LayerMask groundMask;
 
 
-    public float gravity = -9.81f;
+    public float gravity = -5;//-9.81f;
     Vector3 velocity;
     public bool isGrouned;
 
@@ -50,6 +50,11 @@ public class Movement : MonoBehaviour
             jumps = 3;
 
             jumpCount.text = jumps.ToString();
+        }
+
+        if(jumps < 0)
+        {
+            jumps = 0;
         }
 
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -81,9 +86,18 @@ public class Movement : MonoBehaviour
             }
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        if (jumps <= 0 && velocity.y < 0)
+        {
+            velocity.y += (gravity * 2) * Time.deltaTime;
+        }
+        else
+        {
+            velocity.y += gravity * Time.deltaTime;
+        }
 
         controller.Move(velocity * Time.deltaTime);
+
+         
 
     }
 

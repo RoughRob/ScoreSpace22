@@ -10,10 +10,8 @@ public class PlatformFade : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            Debug.Log("Should Fade1");
             if (other.gameObject.GetComponent<Movement>().isGrouned == true)
             {
-                Debug.Log("Should Fade2");
                 StartCoroutine(Fade());
             }
         }

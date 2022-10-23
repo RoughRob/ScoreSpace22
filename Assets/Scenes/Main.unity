@@ -2600,9 +2600,17 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
+      propertyPath: gravity
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
       propertyPath: jumpCount
       value: 
       objectReference: {fileID: 753924501}
+    - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
+      propertyPath: jumpHeight
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
       propertyPath: groundDistance
       value: 0.1
