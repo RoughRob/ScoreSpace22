@@ -8,7 +8,7 @@ using System;
 
 public class Leaderboard : MonoBehaviour
 {
-    int leaderboardID = 8055;
+    int leaderboardID = 8060;
     public TextMeshProUGUI playerNames;
     public TextMeshProUGUI playerScores;
 
@@ -22,6 +22,8 @@ public class Leaderboard : MonoBehaviour
     public int minScores = 0;
 
     public GameObject Holder;
+
+    public bool PlayMode;
 
 
     // Start is called before the first frame update
@@ -135,10 +137,13 @@ public class Leaderboard : MonoBehaviour
                     tempPlayerScores += members[i].score + "\n";
                     //tempPlayerNames += "\n";
 
-                    GameObject temp = Instantiate(JumpRest, new Vector3(xPos, yPos, 0f), Quaternion.Euler(0,0,0));
-                    temp.GetComponent<JumpRest>().fallenName = CleanName;
+                    if (PlayMode)
+                    {
+                        GameObject temp = Instantiate(JumpRest, new Vector3(xPos, yPos, 0f), Quaternion.Euler(0, 0, 0));
+                        temp.GetComponent<JumpRest>().fallenName = CleanName;
 
-                    temp.transform.SetParent(Holder.transform);
+                        temp.transform.SetParent(Holder.transform);
+                    }
                 }
                 done = true;
                 playerNames.text = tempPlayerNames;
@@ -151,5 +156,87 @@ public class Leaderboard : MonoBehaviour
             }
         });
         yield return new WaitWhile(() => done == false);
+    }
+
+
+    public IEnumerator FetchHighscoresCentered()
+    {
+        bool done = false;
+        // Let the player know that the scores are loading
+        string playerNamesTemp = "Loading...";
+        string playerScoresTemp = "";
+
+        playerScores.text = playerScoresTemp;
+        playerNames.text = playerNamesTemp;
+
+        // Get the player ID from Player prefs with the incremental score string attached
+        string latestPlayerID = PlayerPrefs.GetString("PlayerID") + PlayerPrefs.GetString("incrementalScoreString");
+        string[] memberIDs = new string[1] { latestPlayerID };
+
+        // Get the score that matches this ID
+        LootLockerSDKManager.GetByListOfMembers(memberIDs, leaderboardID, (response) =>
+        {
+            if (response.statusCode == 200)
+            {
+                Debug.Log("Successful");
+
+                // We're only asking for one player, so we just need to check the first entry
+                int rank = response.members[0].rank;
+                int count = 10;
+
+                // 5 before and 5 after
+                int after = rank < 6 ? 0 : rank - 5;
+
+                // Get the entries based on the rank that we just found
+                LootLockerSDKManager.GetScoreList(leaderboardID, count, after, (response) =>
+                {
+                    if (response.statusCode == 200)
+                    {
+                        // Set the title of the names tab
+                        playerNames.text = "Names\n";
+                        // Set the title of the scores tab
+                        playerScores.text = "Score\n";
+
+                        Debug.Log("Successful");
+
+                        LootLockerLeaderboardMember[] members = response.items;
+                        for (int i = 0; i < members.Length; i++)
+                        {
+                            string CleanName = members[i].metadata.Substring(0, members[i].metadata.IndexOf("-"));
+                            // Highlight the new score with yellow, add the rest as normal
+
+                            if (members[i].rank == rank)
+                            {
+                                playerNamesTemp += "<color=#f4e063ff>" + members[i].rank + ". " + CleanName + "\n";
+                                playerScoresTemp += "<color=#f4e063ff>" + members[i].score + "\n";
+                            }
+                            else
+                            {
+                                playerNamesTemp += members[i].rank + ". " + CleanName + "\n";
+                                playerScoresTemp += members[i].score + "\n";
+                            }
+
+                        }
+                        done = true;
+                        playerNames.text = playerNamesTemp;
+                        playerScores.text = playerScoresTemp;
+                    }
+                    else
+                    {
+                        Debug.Log("failed: " + response.Error);
+                    }
+                });
+            }
+            else
+            {
+                Debug.Log("failed: " + response.Error);
+            }
+        });
+
+        // Wait until request is done
+        yield return new WaitWhile(() => done == false);
+
+        // Update the TextMeshPro components
+
     }
 }

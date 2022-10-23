@@ -14,26 +14,32 @@ public class FallToDeath : MonoBehaviour
     public int deatheight;
 
     public Leaderboard leaderboard;
+    public GameManager gameManager;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && heightScore.heightScore > deatheight )
+        if (other.tag == "Player")
         {
             //other.gameObject.SetActive(false);
-            StartCoroutine(FellToDeath());
+
+            //Destroy(other.gameObject);
+            gameManager.Dead();
+           // StartCoroutine(FellToDeath());
 
         }
     }
 
-    IEnumerator FellToDeath()
-    {
-        Time.timeScale = 0f;
-        yield return new WaitForSecondsRealtime(1f);
-        yield return leaderboard.SubmitScoreRoutine(Convert.ToInt32(heightScore.moddedScore));
-        Time.timeScale = 1f; 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //IEnumerator FellToDeath()
+    //{
 
-    }
+    //    yield return new WaitForSecondsRealtime(1f);
+    //    Time.timeScale = 0f;
+    //    yield return leaderboard.SubmitScoreRoutine(Convert.ToInt32(heightScore.moddedScore));
+    //    Time.timeScale = 1f;
+    //    gameManager.Dead();
+    //    //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    //}
 
 
 }

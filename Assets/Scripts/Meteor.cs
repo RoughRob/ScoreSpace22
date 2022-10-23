@@ -15,6 +15,10 @@ public class Meteor : MonoBehaviour
 
             Destroy(gameObject);
         }
+        else if (other.tag == "Boundary")
+        {
+            Destroy(gameObject);
+        }
 
     }
 

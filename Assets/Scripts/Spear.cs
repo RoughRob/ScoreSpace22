@@ -45,6 +45,10 @@ public class Spear : MonoBehaviour
                 collided.enabled = false;
 
             }
+            else if (other.tag == "Boundary")
+            {
+                Destroy(gameObject);
+            }
         }
 
         

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meteorPrefab: {fileID: 1860252787723242528, guid: 28ff713afc425df47934352eecd173e2, type: 3}
   fireRate: 0.25
-  meteorForce: 50
+  meteorForce: 15
 --- !u!114 &6514547949913271613
 MonoBehaviour:
   m_ObjectHideFlags: 0
