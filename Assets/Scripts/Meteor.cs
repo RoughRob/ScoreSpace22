@@ -14,7 +14,6 @@ public class Meteor : MonoBehaviour
             other.gameObject.GetComponent<Movement>().reduceJumps(tempJumps);
 
             Destroy(gameObject);
-
         }
 
     }

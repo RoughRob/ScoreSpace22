@@ -5,12 +5,12 @@ using UnityEngine;
 public class Follow : MonoBehaviour
 {
     public Transform target;
-    public float followDis = 1;
+    public Vector3 followDis;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(target.position.x, target.position.y + followDis,target.position.z );
+        transform.position = new Vector3(target.position.x + followDis.x, target.position.y + followDis.y,target.position.z + +followDis.z);
 
     }
 }

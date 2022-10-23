@@ -10,7 +10,12 @@ public class Boost : MonoBehaviour
         if(other.tag == "Player")
         {
             other.gameObject.GetComponent<Movement>().BoostJump();
+            Destroy(gameObject);
         }
+
+
     }
+
+
 
 }

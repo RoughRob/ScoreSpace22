@@ -8,7 +8,7 @@ using System;
 
 public class Leaderboard : MonoBehaviour
 {
-    int leaderboardID = 7999;
+    int leaderboardID = 8055;
     public TextMeshProUGUI playerNames;
     public TextMeshProUGUI playerScores;
 
@@ -20,6 +20,9 @@ public class Leaderboard : MonoBehaviour
 
     public int maxScores = 10;
     public int minScores = 0;
+
+    public GameObject Holder;
+
 
     // Start is called before the first frame update
     void Start()
@@ -134,6 +137,8 @@ public class Leaderboard : MonoBehaviour
 
                     GameObject temp = Instantiate(JumpRest, new Vector3(xPos, yPos, 0f), Quaternion.Euler(0,0,0));
                     temp.GetComponent<JumpRest>().fallenName = CleanName;
+
+                    temp.transform.SetParent(Holder.transform);
                 }
                 done = true;
                 playerNames.text = tempPlayerNames;

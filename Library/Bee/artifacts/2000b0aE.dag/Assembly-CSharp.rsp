@@ -351,7 +351,9 @@
 "Assets/Scripts/PlayerManager.cs"
 "Assets/Scripts/ScorePlacer.cs"
 "Assets/Scripts/ScoreTest.cs"
+"Assets/Scripts/Spawner.cs"
 "Assets/Scripts/Spear.cs"
+"Assets/Scripts/WallFollow.cs"
 -langversion:9.0
 
 /deterministic

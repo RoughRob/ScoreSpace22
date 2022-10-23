@@ -6,7 +6,6 @@ public class MeteorSpawn : MonoBehaviour
 {
     [Header("Meteor Shot")]
     public GameObject meteorPrefab;
-    public Transform ThrowFrom;
     public float fireRate = 1f;
     float fireCountDown = 0;
     public float meteorForce = 1;
