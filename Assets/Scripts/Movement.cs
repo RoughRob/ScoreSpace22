@@ -7,7 +7,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    public CharacterController controller;
+     CharacterController controller;
+     public Animator animator;
 
     public float speed = 5f;
     public float jumpHeight = 3f;
@@ -32,7 +33,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -41,6 +42,7 @@ public class Movement : MonoBehaviour
 
 
         isGrouned = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        animator.SetBool("isGrounded", isGrouned);
 
         if(isGrouned && velocity.y < 0)
         {
@@ -52,9 +54,14 @@ public class Movement : MonoBehaviour
             jumpCount.text = jumps.ToString();
         }
 
-        if(jumps < 0)
+        if(jumps <= 0)
         {
             jumps = 0;
+            animator.SetBool("OutOfJumps", true);
+        }
+        else
+        {
+            animator.SetBool("OutOfJumps", false);
         }
 
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -79,6 +86,8 @@ public class Movement : MonoBehaviour
                 if (isGrouned || jumps > 0)
                 {
                     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                    animator.Play("Armature|Flap");
+
                     jumps--;
                     jumpCount.text = jumps.ToString();
                 }
@@ -89,6 +98,7 @@ public class Movement : MonoBehaviour
         if (jumps <= 0 && velocity.y < 0)
         {
             velocity.y += (gravity * 2) * Time.deltaTime;
+
         }
         else
         {

@@ -1305,7 +1305,7 @@ PrefabInstance:
     - target: {fileID: 565443788914467405, guid: edf8e4b5c93c5c14898bfdc49c5997dd, type: 3}
       propertyPath: SpawnPrefab
       value: 
-      objectReference: {fileID: 8683608740228942387, guid: e81affbdbfaea1c408dff2e9e290ee9a, type: 3}
+      objectReference: {fileID: 6064571165225164225, guid: 7ff3deae3ed546648b7eef3c602e3cde, type: 3}
     - target: {fileID: 565443788914467405, guid: edf8e4b5c93c5c14898bfdc49c5997dd, type: 3}
       propertyPath: SpawnRange.x
       value: 9
@@ -5768,25 +5768,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 495758783}
     - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
-      propertyPath: gravity
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
       propertyPath: jumpCount
       value: 
       objectReference: {fileID: 753924501}
-    - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
-      propertyPath: jumpHeight
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5150826904628172131, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
-      propertyPath: groundDistance
-      value: 0.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aacfd9407f7da05429b920f4936a2906, type: 3}
 --- !u!1001 &6514547950186650080

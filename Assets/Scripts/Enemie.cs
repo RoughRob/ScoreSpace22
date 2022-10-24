@@ -66,7 +66,7 @@ public class Enemie : MonoBehaviour
             int tempJumps = other.gameObject.GetComponent<Movement>().jumps;
             other.gameObject.GetComponent<Movement>().reduceJumps(tempJumps);
 
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 

@@ -10,7 +10,7 @@ public class PlatformFade : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if (other.gameObject.GetComponent<Movement>().isGrouned == true)
+            if (other.gameObject.GetComponent<Movement>().isGrouned == true && other.gameObject.GetComponent<Movement>().jumps >= 3)
             {
                 StartCoroutine(Fade());
             }
