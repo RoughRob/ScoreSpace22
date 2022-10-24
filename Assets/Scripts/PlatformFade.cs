@@ -6,6 +6,8 @@ public class PlatformFade : MonoBehaviour
 {
     public float waitTime;
 
+    public AudioClip clip;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
@@ -13,6 +15,7 @@ public class PlatformFade : MonoBehaviour
             if (other.gameObject.GetComponent<Movement>().isGrouned == true && other.gameObject.GetComponent<Movement>().jumps >= 3)
             {
                 StartCoroutine(Fade());
+                other.gameObject.GetComponent<PlayAudio>().PlayClip(clip);
             }
         }
     }

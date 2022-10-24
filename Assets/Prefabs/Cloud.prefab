@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTime: 1
+  clip: {fileID: 8300000, guid: 75aa198e95b8c654eb97aa867b7800bd, type: 3}
 --- !u!65 &4712836706155137284
 BoxCollider:
   m_ObjectHideFlags: 0

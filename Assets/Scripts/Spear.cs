@@ -13,10 +13,12 @@ public class Spear : MonoBehaviour
 
     public Collider collided;
 
+    public AudioClip clip;
+
     private void Start()
     {
         StartCoroutine(Death());
-        hasCollided = false;
+        hasCollided = false;   
     }
 
     private void Update()
@@ -43,6 +45,8 @@ public class Spear : MonoBehaviour
 
                 transform.position = other.ClosestPoint(transform.position);
                 collided.enabled = false;
+
+                other.gameObject.GetComponent<PlayAudio>().PlayClip(clip);
 
             }
             else if (other.tag == "Boundary")

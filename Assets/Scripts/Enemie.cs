@@ -18,6 +18,7 @@ public class Enemie : MonoBehaviour
     float fireCountDown = 0;
     public float spearForce = 1;
 
+    public AudioClip clip;
 
     // Update is called once per frame
     void Update()
@@ -66,6 +67,7 @@ public class Enemie : MonoBehaviour
             int tempJumps = other.gameObject.GetComponent<Movement>().jumps;
             other.gameObject.GetComponent<Movement>().reduceJumps(tempJumps);
 
+            other.gameObject.GetComponent<PlayAudio>().PlayClip(clip);
             Destroy(gameObject.transform.parent.gameObject);
         }
     }

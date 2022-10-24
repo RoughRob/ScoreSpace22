@@ -8,7 +8,7 @@ using System;
 
 public class Leaderboard : MonoBehaviour
 {
-    int leaderboardID = 8061;
+    int leaderboardID = 8163;
     public TextMeshProUGUI playerNames;
     public TextMeshProUGUI playerScores;
 
@@ -118,24 +118,13 @@ public class Leaderboard : MonoBehaviour
                     to++;
                     string Yresult = tempString.Substring(to, tempString.Length - to );
 
-                    //Debug.Log(CleanName);
-                    //Debug.Log(tempString);
-                    //Debug.Log(Xresult);
-                    //Debug.Log(Yresult);
                     float xPos = float.Parse(Xresult);
                     float yPos = float.Parse(Yresult);
 
                     tempPlayerNames += members[i].rank + ". " + CleanName + "\n";
-                    //if (members[i].player.name != "")
-                    //{
-                    //    tempPlayerNames += members[i].player.name;
-                    //}
-                    //else
-                    //{
-                    //    tempPlayerNames += members[i].player.id;
-                    //}
+
                     tempPlayerScores += members[i].score + "\n";
-                    //tempPlayerNames += "\n";
+
 
                     if (PlayMode)
                     {

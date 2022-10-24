@@ -1307,6 +1307,7 @@ MonoBehaviour:
   ThrowFrom: {fileID: 2502714785016024547}
   fireRate: 0.75
   spearForce: 100
+  clip: {fileID: 8300000, guid: 189c47c2dcf5c7449845b411a74a1db1, type: 3}
 --- !u!136 &6064571165093939983
 CapsuleCollider:
   m_ObjectHideFlags: 0

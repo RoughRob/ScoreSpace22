@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JumpRest : MonoBehaviour
@@ -9,35 +10,51 @@ public class JumpRest : MonoBehaviour
     public string fallenName;
     public TextMeshProUGUI nameText;
 
+    AudioSource Audio;
+
+    public GameObject particles;
+
+    bool triggered = false;
+
     private void Awake()
     {
         playerMovement = GameObject.Find("/Player").GetComponent<Movement>();
-        
+
+
     }
 
     private void Start()
     {
-        nameText.text = fallenName;  
+        nameText.text = fallenName;
+        Audio = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player" && triggered == false)
         {
-            //if(playerMovement.jumps >= 3)
-            //{
-                playerMovement.jumps++;
-            //}
-            //else
-            //{
-            //    playerMovement.jumps = 3;
-            //}
+
+            playerMovement.jumps++;
+
+            Audio.Play();
 
             playerMovement.jumpCount.text = playerMovement.jumps.ToString();
-            //jumpcount.text = playerMovement.jumps.ToString();
-            Destroy(gameObject);
+
+            triggered = true;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            particles.SetActive(false);
+
+            Debug.Log(other.gameObject.name);
+
+            StartCoroutine(WaitForSound());   
+
         }
     }
 
+    IEnumerator WaitForSound()
+    {
+        yield return  new WaitForSeconds(1);
+        Destroy(gameObject);
+    }
 
 }

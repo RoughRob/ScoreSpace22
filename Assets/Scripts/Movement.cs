@@ -30,10 +30,14 @@ public class Movement : MonoBehaviour
     public int jumps = 3;
     public TextMeshProUGUI jumpCount;
 
+    PlayAudio audioPlayer;
+    public AudioClip clip;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        audioPlayer = GetComponent<PlayAudio>();
     }
 
     // Update is called once per frame
@@ -85,6 +89,8 @@ public class Movement : MonoBehaviour
             {
                 if (isGrouned || jumps > 0)
                 {
+                    gameObject.GetComponent<PlayAudio>().PlayClip(clip);
+
                     velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
                     animator.Play("Armature|Flap");
 

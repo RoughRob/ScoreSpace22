@@ -354,6 +354,7 @@
 "Assets/Scripts/Parallax.cs"
 "Assets/Scripts/PauseView.cs"
 "Assets/Scripts/PlatformFade.cs"
+"Assets/Scripts/PlayAudio.cs"
 "Assets/Scripts/PlayerManager.cs"
 "Assets/Scripts/PlayView.cs"
 "Assets/Scripts/ScoreMenu.cs"
