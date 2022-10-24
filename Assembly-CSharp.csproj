@@ -66,12 +66,12 @@
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Leaderboard.cs" />
     <Compile Include="Assets\Scripts\MeteorSpawn.cs" />
-    <Compile Include="Assets\PlayView.cs" />
-    <Compile Include="Assets\PauseView.cs" />
+    <Compile Include="Assets\Scripts\PlayView.cs" />
+    <Compile Include="Assets\Scripts\PauseView.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Boost.cs" />
-    <Compile Include="Assets\DeadView.cs" />
+    <Compile Include="Assets\Scripts\DeadView.cs" />
     <Compile Include="Assets\Scripts\JumpRest.cs" />
     <Compile Include="Assets\Scripts\FallToDeath.cs" />
     <Compile Include="Assets\Scripts\LookTarget.cs" />
